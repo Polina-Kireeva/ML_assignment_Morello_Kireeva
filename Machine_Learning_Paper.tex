@@ -67,6 +67,8 @@ Machine Learning, Mushroom, Edible.
 
 The dataset used for the assignment is inspired by one that is available at: \url{https://archive.ics.uci.edu/ml/datasets/Mushroom}. The original one was not used because it did not allow various forms of pre-processing (e.g. imputation of missing values).\\
 
+The dataset used for the assignment is available at: \url{https://archive.ics.uci.edu/dataset/848/secondary+mushroom+dataset}.\\
+
 The assignment group is composed of two members:
 
 \begin{itemize}
@@ -137,7 +139,19 @@ Another interesting analysis regards execution time. That is beyond the scope of
 
 \section{Proposed Method}
 
-This is the proposed method.
+The dataset originally contains 21 features. Through data profiling 9 underrepresented (with a lot of NA values, too many for imputation without distorting the data) features were identified. Then the classification label (poisonous/edible) as well as some true/false features were encoded using 0 and 1.\\
+
+Six of the features ("cap-shape", "cap-color", "gill-color", "stem-color", "habitat" and "season") have their values represented as letters - since most algorithms only support numerical values, encoding was needed. Mapping the letters as numbers could mislead some algorithms to see the values as a scale, which is not true in this case of colors, seasons and shapes, so the appropriate encoding approach would be one-hot encoding. However, applying it to all 6 features would increase the amount of features to 51.\\
+
+Three numerical features ("cap-diameter", "stem-height" and "stem-width") had values of different scales (0.38 to 62.34, 0.0 to 33.92 and 0.0 to 103.91), so they were all normalized to a scale of 0 to 1.\\
+
+The next preprocessing step was the creation of a correlation matrix, which would help identify redundant features - if any two or more features were highly correlated, that would mean having both present would not be highly beneficial for the model's accuracy.\\
+
+A correlation matrix heatmap was used for a visual representation of the level of correlation between all features, then a filter was applied so only highly correlated (both positive and negative correlation) features would be displayed for clarity. Features "season\_a\_encoded" and "season\_u\_encoded" showed a correlation of over 0.75, so one of the features ("season\_a\_encoded") was discarded.\\
+
+First, a shallow decision tree with the maximum depth of 2 was used to see the baseline accuracy of a simple model, which was 0.63. Then decision trees were trained with increasing depth and the results were displayed in a graph. The graph showed a significant decrease in accuracy gain after the depth of 13, and a plateau after 16. A desicion tree with the depth of 13 showed accuracy of 0.92.\\
+
+Then, to push the efficiently achieved accuracy even further, AutoML was used. With a time budget of 60 seconds, the best algorithm was determined to be XGBClassifier with the accuracy of 0.996.\\
 
 \section{Results}
 
