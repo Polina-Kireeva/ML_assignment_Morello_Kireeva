@@ -13,7 +13,6 @@
 \else
    \usepackage[dvips]{graphicx}
 \fi
-
 \usepackage{amsmath}
 \usepackage{algorithm}
 \usepackage{algorithmic}
@@ -21,18 +20,15 @@
 \usepackage{mdwmath}
 \usepackage{mdwtab}
 \usepackage{eqparbox}
-
 % Subfig package (OK)
+
 \ifCLASSOPTIONcompsoc
   \usepackage[caption=false,font=footnotesize,labelfont=sf,textfont=sf]{subfig}
 \else
   \usepackage[caption=false,font=footnotesize]{subfig}
 \fi
-
 \usepackage{url}
-
 \usepackage[hidelinks]{hyperref}
-
 \hyphenation{op-tical net-works semi-conduc-tor}
 
 \begin{document}
@@ -63,9 +59,9 @@ Machine Learning, Mushroom, Edible.
 \label{sec:introduction}
 \fi
 
-\IEEEPARstart{T}he Machine Learning Assignment focused on classification of mushrooms using a dataset with information about 61069 hypothetical mushrooms based on 173 species and classified as edible, poisonous or no information about edibility.\\
+\IEEEPARstart{T}he Machine Learning Assignment focused on the classification of mushrooms using a dataset with information about 61069 hypothetical mushrooms based on 173 species and classified as edible, poisonous or no information about edibility.\\
 
-The dataset used for the assignment is inspired by one that is available at: \url{https://archive.ics.uci.edu/ml/datasets/Mushroom}. The original one was not used because it did not allow various forms of pre-processing (e.g. imputation of missing values).\\
+The dataset used for the assignment is called “Secondary Mushroom Dataset" and it is derived from the one with empirical data about different variety of mushrooms. The original dataset was not considered for the assignment because it did not allow various forms of pre-processing (e.g. imputation of missing values) and it contained too few variables (173 entries) to be used for training of the machine learning algorithm.\\
 
 The dataset used for the assignment is available at: \url{https://archive.ics.uci.edu/dataset/848/secondary+mushroom+dataset}.\\
 
@@ -76,19 +72,19 @@ The assignment group is composed of two members:
   \item Polina Kireeva.\\
 \end{itemize}
 
-The group organization was structured without a rigid separation of tasks sections, in this way it was possible to always keep a coherent narrative of the assignment and speed up the review of the sections.\\
+The activities were done following the structure of the Machine Learning course trying to cover all the topics and simplify the final evaluation process.\\
+
+The group organization was structured without a rigid separation of tasks regarding sections. Regardless, all the members were directily involved in defining and reviewing all the section of the machine learning assignment providing meaningful feedback or adjustment to the analysis performed.\\
 
 The member Morello supervised the dataset search and the analysis of existing Machine Learning approaches in the literature.\\
 
-The member Kireeva supervised the definition of the problem and the implementation of the algorithm.\\
+The member Kireeva supervised the definition of the problem and the evaluation of possible algorithm to be implemented.\\
 
-This data understanding task was done in a cooperative way so it cannot be attributed to a specific member. The prior distinction indicates only a major involvement, both members participated in all the tasks of the assignment providing meaningful review or adjustment to the analysis performed.\\
-
-The activities were done following the structure of the Machine Learning course to cover almost all the topics and simplify the evaluation process.\\
+The Data understanding, Modeling and Evaluation sections cannot be attributed to a specific member because it was defined in a cooperative way.\\
 
 \hfill mds
  
-\hfill November 20, 2025
+\hfill November 25, 2025
 
 \section{Related Work}
 
@@ -143,7 +139,7 @@ The dataset originally contains 21 features. Through data profiling 9 underrepre
 
 Six of the features (“cap-shape", “cap-color", “gill-color", “stem-color", “habitat" and “season") have their values represented as letters - since most algorithms only support numerical values, encoding was needed. Mapping the letters as numbers could mislead some algorithms to see the values as a scale, which is not true in this case of colors, seasons and shapes, so the appropriate encoding approach would be one-hot encoding. However, applying it to all 6 features would increase the amount of features to 51.\\
 
-Three numerical features ("cap-diameter", "stem-height" and "stem-width") had values of different scales (0.38 to 62.34, 0.0 to 33.92 and 0.0 to 103.91), so they were all normalized to a scale of 0 to 1.\\
+Three numerical features (“cap-diameter", “stem-height" and “stem-width") had values of different scales (0.38 to 62.34, 0.0 to 33.92 and 0.0 to 103.91), so they were all normalized to a scale of 0 to 1.\\
 
 The next preprocessing step was the creation of a correlation matrix, which would help identify redundant features - if any two or more features were highly correlated, that would mean having both present would not be highly beneficial for the model's accuracy.\\
 
