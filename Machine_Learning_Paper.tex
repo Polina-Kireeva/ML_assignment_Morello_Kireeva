@@ -138,19 +138,27 @@ The metrics used were: accuracy, precision, recall, F1 Score, ROC AUC (probabili
 
 The main take from this paper is the use of different models to evaluate their effectiveness by using different parameters for comparison. It provides a theoretical ground for evaluating new possible models for the assignent and new metrics to evaluate the performance of the models.\\
 
-The last paper also evaluates different types of models but the main point for the assignment is the evaluation of FP and FN. It is important to properly assess it because in the case of mushroom classification a FP can cause problem to health and safety, especially when deployed for an agricultural company.\\
+The last paper also evaluates different types of models but the main point for the assignment is the evaluation of FP and FN. It is important to properly assess it because in the case of mushroom classification a FP can cause problem to health and safety, especially when deployed by an agricultural company.\\
 
 Multiple parameters were used to account for the need to have a precise assessment on how correct the predictions on edible mushrooms are.\\
 
-Another interesting analysis regards execution time. That is beyond the scope of the assignment but it should be evaluated with bigger projects and enormous amounts of data. It should be important to evaluate pros and cons between better performing models and their precision.\\
+Another interesting analysis regards execution time. It is beyond the scope of the assignment but should be evaluated when handling projects that process enormous amounts of data. It should be important to evaluate pros and cons between better performing models and their precision.\\
 
 \section{Proposed Method}
 
-The dataset (Secondary Mushroom dataset) originally contained 21 features (of "object" and "float64" data types).\\ 
+The dataset (Secondary Mushroom dataset) had a problem regarding data visualization, the source of it was found in a delimiter error in the .csv file because instead of displaying a comma a selicolomn was used.\\
 
-Through data profiling 9 underrepresented (with a lot of NA values, too many to allow for imputation without the risk of significantly distorting the data) features were identified. Then the label (poisonous/edible classification) as well as some true/false features ("does-bruise-or-bleed" and "has-ring") were encoded using 0 and 1 (binary encoding).\\
+The dataset was analyzed in a tabular form to have a general overview of the data. It originally contained 21 features and 61069 observation with two data types of “object" and “float64".\\ 
 
-Six of the features (“cap-shape", “cap-color", “gill-color", “stem-color", “habitat" and “season") had their values represented as letters - since most algorithms only support numerical values, encoding was needed. Simply mapping the letters as numbers could mislead some algorithms to see the values as a scale, which is not true in this case of colors, seasons, shapes and habitats, so the one-hot encoding was chosen as the appropriate encoding approach.\\ 
+The data profiling phase helped evaluate the presence of null values for each feature and their predominance over the total entries.\\
+
+Then an evaluation was done to drop all the features with high null values and “stem-root", “veil-type", “veil-color", “spore-print-color" and “stem-surface" were dropped.\\
+
+For the features “gill-spacing", “cap-surface", “ring-type" and "gill-attachment" were evaluated imputation and a grafical analysis was performed to evaluate how frequently the entries occurred for each feature. The possibility of mean imputation was considered but the high amount of missing entries led to dropping them.\\  
+
+The features “cap-shape", “cap-color", “gill-color", “stem-color", “habitat" and “season" had their values represented as letters and - since most algorithms only support numerical values, encoding was needed.\\ 
+
+Simply mapping the letters as numbers could mislead some algorithms to see the values as a scale, which is not true in this case of colors, seasons, shapes and habitats, so the one-hot encoding was chosen as the appropriate approach.\\ 
 
 However, applying it to all six features increased the amount of features to 51 (with an increase of 30 from the original 21, more than doubling it). This amount will, however, be later reduced to simplify computations and save resourses.\\
 
@@ -160,9 +168,13 @@ The next preprocessing step was the creation of a correlation matrix, which woul
 
 A correlation matrix heatmap was used for a visual representation of the level of correlation between all features, then a filter was applied so only highly correlated (both positive and negative correlation) features would be displayed for clarity.\\ 
 
-Features “season\_a\_encoded" and “season\_u\_encoded" showed a correlation of over 0.75, so one of the features ("season\_a\_encoded") was discarded.\\
+The features “season\_a\_encoded" and “season\_u\_encoded" showed a correlation of over 0.75, so one of the features ("season\_a\_encoded") was discarded.\\
 
-First, a shallow decision tree with the maximum depth of 2 was used to see the baseline accuracy of a simple model, which was 0.63. Then decision trees were trained with increasing depth and the results were displayed in a graph.\\ 
+\section{Results}
+
+The results of the assignment regards different type of algorithm used, their accuracy and an AutoML analysis to verify the existance of better algorithms.\\
+
+A shallow decision tree with a maximum depth of 2 was used to see the baseline accuracy of a simple model, which was 0.63. Then decision trees were trained with increasing depth and the results were displayed in a graph.\\ 
 
 The graph showed a significant decrease in accuracy gain after the depth of 13, and a plateau after 16. A desicion tree with the depth of 13 showed accuracy of 0.92.\\
 
@@ -179,10 +191,6 @@ As for the random forest, a tiny drop in accuracy was observed (approximately 0.
 Feature importance for random forest was also reviewed to make sure the 10 removed features did not hold much importance to the algorithm, and they did not: the one with the highest importance out of the removed ones had 0.0026 (less than 1\%).\\ 
 
 Since no considerable negative results were observed, the removal was kept to simplify computations.\\
-
-\section{Results}
-
-This is the result.
 
 \section{Conclusion}
 
