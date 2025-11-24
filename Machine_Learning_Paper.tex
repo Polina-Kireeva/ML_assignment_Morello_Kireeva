@@ -41,7 +41,7 @@
 
 Machine Learning, Mushroom, Edible.
 
-\end{IEEEkeywords}}
+\end{IEEEkeywords}
 
 \maketitle
 
@@ -72,7 +72,9 @@ The assignment group is composed of the members:
 
 The activities were done following the structure of the Machine Learning course covering all the topics to simplify the final evaluation process.\\
 
-The group organization was structured without a rigid separation of tasks regarding sections. All members were directily involved in defining and reviewing all the section of the machine learning assignment providing meaningful feedback or adjustments to the analysis performed.\\
+All members were directily involved in defining and reviewing all the section of the machine learning assignment providing meaningful feedback or adjustments to the analysis performed.\\
+
+The group organization was structured without a rigid separation of tasks regarding sections, the idea was to adopt an agile approach with an iterative process over modular sections.\\ 
 
 The member Kireeva supervised the definition of the problem and evaluated possible algorithm to be implemented.\\
 
@@ -115,11 +117,12 @@ This is beyond the scope of the assignment but it provides an interesting take o
 The second paper is focused on models comparison, the ones considered are:
 
 \begin{itemize}
+
   \item Random Forest;\\
 
   \item Gradient Boosting Machines (GBMS) a consecutive input strategy addressing mistakes of the past models by training weak learners (e.g. shallow decision trees) in a gradient descent framework;\\
 
-  \item Ada Boost (Adaptive Boosting), consolidating a succession of feeble classifiers and changing their weight at every iteration to adjust errors. The last classifier is a weighted mix of all the previous ones, giving weight to the best performing on training data;\\
+  \item Ada Boost (Adaptive Boosting), consolidating a succession of feeble classifiers and changing their weight at every iteration to adjust errors. The last classifier is a weighted mix the previous ones, giving weight to the best performing on training data;\\
 
   \item Extra Trees (Extremely Randomized Trees) an ensemble technique similar to Random Forest but arbitrarely (without usage of Gini or data gain);\\
 
@@ -147,33 +150,37 @@ The data understanding phase helped evaluate the presence of null values for eac
 
 Then an evaluation was done to drop all the features with high null values and “stem-root", “veil-type", “veil-color", “spore-print-color" and “stem-surface" were dropped.\\
 
-For the features “gill-spacing", “cap-surface", “ring-type" and “gill-attachment" the use of imputation was attempted, performing a grafical analysis to evaluate how frequently the entries occurred for each feature. The possibility of mean imputation was considered but the high amount of missing entries led to dropping them.\\  
+For the features “gill-spacing", “cap-surface", “ring-type" and “gill-attachment" the use of imputation was attempted, performing a grafical analysis to evaluate how frequently the entries occurred for each feature.\\ 
 
-The features “cap-shape", “cap-color", “gill-color", “stem-color", “habitat" and “season" had their values represented as letters and - since most algorithms only support numerical values, encoding was needed.\\ 
+The possibility of mean imputation was considered but the high amount of missing entries led to dropping them.\\  
 
-Simply mapping the letters as numbers could mislead some algorithms to see the values as a scale, which is not true in this case of colors, seasons, shapes and habitats, so the one-hot encoding was chosen as the appropriate approach.\\ 
+The features “cap-shape", “cap-color", “gill-color", “stem-color", “habitat" and “season" had their values represented as letters and the use of encoding was needed, since most algorithms only support numerical values.\\ 
 
-However, applying it to all 6 features increased the amount of features to 51 (with an increase of 30 from the original 21, more than doubling it). This amount will, however, be later reduced to simplify computations and save resourses.\\
+Simply mapping the letters as numbers could mislead some algorithms to see the values as a scale, which is not true in this case of colors, seasons, shapes and habitats, so the one-hot encoding was chosen as the appropriate approach for this assignment.\\ 
 
-Three numerical features (“cap-diameter", “stem-height" and “stem-width") had values of different scales (0.38 to 62.34, 0.0 to 33.92 and 0.0 to 103.91), so they were all normalized to a scale of 0 to 1.\\
+However, applying it to all 6 features increased the amount of features to 51, more than double compared to the original ones (an increase of 30 from the initial 21). This amount will, however, be later reduced to simplify computations and save resourses.\\
+
+The numerical features “cap-diameter", “stem-height" and “stem-width" had values using different scales (0.38 to 62.34, 0.0 to 33.92 and 0.0 to 103.91), so they were all normalized to a scale of 0 to 1.\\
 
 The next step was the creation of a correlation matrix, which would help identify redundant features - if any two or more features were highly correlated, that would mean having both present would not be highly beneficial for the model's accuracy.\\
 
 A correlation matrix heatmap was used for a visual representation of the level of correlation between all features, then a filter was applied so only highly correlated (both positive and negative correlation) features would be displayed for clarity.\\ 
 
-The features “season\_a\_encoded" and “season\_u\_encoded" showed a correlation of over 0.75, so one of the features ("season\_a\_encoded") was discarded.\\
+The features “season\_a\_encoded" and “season\_u\_encoded" showed a correlation of over 0.75. This was considered the threshold to considered features highly correlated and so “season\_a\_encoded" was discarded.\\
 
-This concluded the data understanding phase.\\
+This concluded the data understanding phase. All the previous step were done to ensure a proper set of data that could be used to train the machine learning algorithm.\\
 
-The next step was the modeling of the data for the training of the machine learning algorithm. This consisted in the splitting of the data between training and test sets.\\
+The next phase was modeling the data, the first step consisted in splitting them between training sets (data from which the model would find a pattern) and test sets used to verify how the model would perform.\\
 
-After the splitting the decision tree classifier was considered as a possible algorithm and, after the implementation, an accuracy score to evaluate the model.\\
+After the splitting has been completed, it was considered the tree classifieras a possible algorithm with an accuracy score to evaluate the model how well the model is able to correctly predict edible mushrooms.\\
 
-In addition to the accuracy score, a graphical representation of the accuracy compared to the depht of the decision tree was done for analysis purposes. Also, a feature importance was attempted to see if all all the feature selected were relevant in the modeling of the algorithm.\\
+In addition to the accuracy score, a graphical representation on how the accuracy changes based on the depht of the decision tree was done.\\ 
+
+Also, a feature importance was attempted to see if all all the feature selected were relevant in the modeling of the algorithm.\\
 
 To verify the assumption of the algorith chosen a random forest classified was deploy to evaluate the difference in accuracy.\\
 
-Lastly, AutoML was used to evaluate the best model and hyperparameters for the Secondary mushroom dataset.\\
+Lastly, AutoML was used to evaluate the best models and hyperparameters for the Secondary mushroom dataset.\\
 
 \section{Results}
 
