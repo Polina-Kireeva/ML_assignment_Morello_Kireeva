@@ -150,25 +150,37 @@ The dataset (Secondary Mushroom dataset) had a problem regarding data visualizat
 
 The dataset was analyzed in a tabular form to have a general overview of the data. It originally contained 21 features and 61069 observation with two data types of “object" and “float64".\\ 
 
-The data profiling phase helped evaluate the presence of null values for each feature and their predominance over the total entries.\\
+The data understanding phase helped evaluate the presence of null values for each feature and their predominance over the total entries.\\
 
 Then an evaluation was done to drop all the features with high null values and “stem-root", “veil-type", “veil-color", “spore-print-color" and “stem-surface" were dropped.\\
 
-For the features “gill-spacing", “cap-surface", “ring-type" and "gill-attachment" were evaluated imputation and a grafical analysis was performed to evaluate how frequently the entries occurred for each feature. The possibility of mean imputation was considered but the high amount of missing entries led to dropping them.\\  
+For the features “gill-spacing", “cap-surface", “ring-type" and “gill-attachment" the use of imputation was attempted, performing a grafical analysis to evaluate how frequently the entries occurred for each feature. The possibility of mean imputation was considered but the high amount of missing entries led to dropping them.\\  
 
 The features “cap-shape", “cap-color", “gill-color", “stem-color", “habitat" and “season" had their values represented as letters and - since most algorithms only support numerical values, encoding was needed.\\ 
 
 Simply mapping the letters as numbers could mislead some algorithms to see the values as a scale, which is not true in this case of colors, seasons, shapes and habitats, so the one-hot encoding was chosen as the appropriate approach.\\ 
 
-However, applying it to all six features increased the amount of features to 51 (with an increase of 30 from the original 21, more than doubling it). This amount will, however, be later reduced to simplify computations and save resourses.\\
+However, applying it to all 6 features increased the amount of features to 51 (with an increase of 30 from the original 21, more than doubling it). This amount will, however, be later reduced to simplify computations and save resourses.\\
 
 Three numerical features (“cap-diameter", “stem-height" and “stem-width") had values of different scales (0.38 to 62.34, 0.0 to 33.92 and 0.0 to 103.91), so they were all normalized to a scale of 0 to 1.\\
 
-The next preprocessing step was the creation of a correlation matrix, which would help identify redundant features - if any two or more features were highly correlated, that would mean having both present would not be highly beneficial for the model's accuracy.\\
+The next step was the creation of a correlation matrix, which would help identify redundant features - if any two or more features were highly correlated, that would mean having both present would not be highly beneficial for the model's accuracy.\\
 
 A correlation matrix heatmap was used for a visual representation of the level of correlation between all features, then a filter was applied so only highly correlated (both positive and negative correlation) features would be displayed for clarity.\\ 
 
 The features “season\_a\_encoded" and “season\_u\_encoded" showed a correlation of over 0.75, so one of the features ("season\_a\_encoded") was discarded.\\
+
+This concluded the data understanding phase.\\
+
+The next step was the modeling of the data for the training of the machine learning algorithm. This consisted in the splitting of the data between training and test sets.\\
+
+After the splitting the decision tree classifier was considered as a possible algorithm and, after the implementation, an accuracy score to evaluate the model.\\
+
+In addition to the accuracy score, a graphical representation of the accuracy compared to the depht of the decision tree was done for analysis purposes. Also, a feature importance was attempted to see if all all the feature selected were relevant in the modeling of the algorithm.\\
+
+To verify the assumption of the algorith chosen a random forest classified was deploy to evaluate the difference in accuracy.\\
+
+Lastly, AutoML was used to evaluate the best model and hyperparameters for the Secondary mushroom dataset.\\
 
 \section{Results}
 
