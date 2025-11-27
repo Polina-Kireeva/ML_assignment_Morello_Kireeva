@@ -70,19 +70,23 @@ All members were directly involved in defining and reviewing all the sections of
 
 The group organization was structured without a rigid separation of tasks regarding sections, the idea was to adopt an agile approach with an iterative process over modular sections.\\ 
 
-The member Kireeva supervised the definition of the problem and evaluated possible algorithms to be implemented.\\
+The member Kireeva supervised the definition of the problem and evaluated possible pre-processing steps to be implemented.\\
 
-The problem was to find a suitable dataset that could offer possibilities for different steps of pre-processing and provide analysis opportunities to cover almost all the CRISP-DM cycle.\\
+The problem was to find a suitable dataset that could offer possibilities for different steps of pre-processing and provide analysis opportunities to cover almost all of the steps of the CRISP-DM cycle.\\
 
-The member Morello searched for a dataset suitable for the assignment and reviewed existing papers covering the topics of Machine Learning in mushroom classification (more details in the next section).\\ 
+The member Morello searched for a dataset suitable for the assignment and reviewed existing papers in the literature covering the topics of Machine Learning in mushroom classification.\\
 
-The Data understanding, Modeling and Evaluation sections cannot be attributed to a specific member because these tasks required a cooperative approach to discuss which procedures will provide the best results regarding the machine learning assignment.\\
+The choice of papers was based on specific elements that could provide support to hypothesis or provide a different point of view in a specific section of the assignment.\\
+
+The Data understanding, Modeling and Evaluation sections cannot be attributed to a specific member because these tasks required a cooperative approach to discuss which procedures provided the best results regarding the machine learning assignment.\\
+
+The Modeling phase proved to be the most complex one because of the possibilities regarding the best course of action.\\
  
-\hfill November 25, 2025
+\hfill November 27, 2025
 
 \section{Related Work}
 
-There were three papers analyzed to evaluate different types of methodologies and approaches to obtain useful insights for the Machine Learning assignment. The articles are:
+There were three papers analyzed to evaluate different types of methodologies and approaches to obtain useful insights for the Machine Learning assignment. The articles are:\\
 
 \begin{itemize}
 
@@ -98,17 +102,17 @@ The first paper analyzes topics that overlap with the assignment and could be us
 
 Regarding data curation, an interesting insight provided is how the way data is collected can influence the choice of the algorithm (e.g. image or attributes based).\\
 
-This also reflects on the dataset used for the algorithm training, the paper analyzed the original dataset and created a secondary one with increased number of entries while still remained balanced regarding the edible to poisonous ratio.\\ 
+This also reflects on the dataset used for the algorithm training, the paper analyzed the original dataset and created a secondary one with increased number of entries while still remaining balanced regarding the edible to poisonous ratio.\\ 
 
 It may seem like an obvious conclusion but having agency over the data collection choices can produce effects on the overall cost (economic and time) of the entire process.\\
 
-As for data quality and integrity there was a similar thought process regarding the use of correlation analysis in order to remove reduntant variables.\\ 
+As for data quality and integrity there was a similar thought process regarding the use of correlation analysis in order to remove redundant variables.\\ 
 
 For algorithm use, the paper evaluated five different classifiers for the predictive models with metrics like accuracy and F2 score (prioritize recall over precision) and then compared to the original dataset.\\
 
 This is beyond the scope of the assignment but it provides an interesting take on the usage of more fine-tuned metrics to evaluate the training of the machine learning algorithm, so it was considered useful for the assignment purpose.\\
 
-The second paper is focused on models comparison, the ones considered are:
+The second paper is focused on models comparison, the ones considered are:\\
 
 \begin{itemize}
 
@@ -140,13 +144,13 @@ The dataset (Secondary Mushroom dataset) had a problem regarding data visualizat
 
 The dataset was analyzed as a dataframe to have a general overview of the data. It originally contained 21 features and 61069 observations with two data types: “object" and “float64".\\ 
 
-The data profiling step helped identify the presence of null values for each feature and their predominance over the total entries.\\
+The data profiling step helped provide the data in an easily readable form, identify the presence of null values for each feature and their predominance over the total entries.\\
 
-Then the decision was made to drop all the features with high null values, so “stem-root", “veil-type", “veil-color", “spore-print-color" and “stem-surface" were dropped.\\
+Then the decision was made to drop all the features with a high percentage of null values, so “stem-root", “veil-type", “veil-color", “spore-print-color" and “stem-surface" were dropped.\\
 
 For the features “gill-spacing", “cap-surface", “ring-type" and “gill-attachment" a grafical analysis was performed to evaluate how frequently the entries occurred for each category and how evenly distributed they were.\\ 
 
-The possibility of imputation was considered, however with consideration to the potential bias that imputation could bring for the amount of values missing the decision to drop them was made.\\  
+The possibility of imputation was evaluated, however with consideration to the potential bias that imputation could bring for the amount of values missing the decision to drop them was made.\\  
 
 The features “cap-shape", “cap-color", “gill-color", “stem-color", “habitat" and “season" had their values represented as letters so, since most algorithms only support numerical values, the use of encoding was needed.\\ 
 
@@ -158,29 +162,29 @@ The numerical features “cap-diameter", “stem-height" and “stem-width" had 
 
 The next step was the creation of a correlation matrix, which would help identify redundant features - if any two or more features were highly correlated, it would mean that having both present would not be highly beneficial for the model's accuracy.\\
 
-A correlation matrix heatmap was used for a visual representation of the level of correlation between all features, then a filter was applied so only highly correlated (both positive and negative correlation) features would be displayed for clarity.\\ 
+A correlation matrix heatmap was used for a visual representation of the level of correlation between all features, then a filter was applied so only features with a correlation higher than the one considered (both positive and negative) would be displayed for clarity.\\ 
 
-The features “season\_a\_encoded" and “season\_u\_encoded" showed a correlation of over 0.75. This was considered to be above the threshold of highly correlated features and so “season\_a\_encoded" was discarded.\\
+The features “season\_a\_encoded" and “season\_u\_encoded" showed a correlation of over 0.75. This was considered to be above the threshold decided for highly correlated features and so “season\_a\_encoded" was discarded.\\
 
-This concluded the data understanding phase. All the previous steps were done to ensure a proper set of data that could be used to train the machine learning algorithms.\\
+This concluded the data understanding phase. All the previous steps were done to define a proper set of data that could be used to train the machine learning algorithms.\\
 
-The next phase was modelling the data, the first step consisted of splitting the data into a training set (data from which the model would learn to find patterns) and a test set used to verify how the model would perform.\\
+The next phase was modelling the data with the first step consisting of splitting the data to create a training set (data from which the model would learn to find patterns) and a test set used to verify how the model would perform.\\
 
-After the splitting was completed, tree classification algorithms were considered, with an accuracy score to evaluate how well the model is able to identify edible mushrooms.\\
+After the splitting was completed, tree classification algorithms were implemented and an accuracy score was used to evaluate how well the model was able to identify edible mushrooms.\\
 
-In addition to the accuracy score, a graphical representation of how the accuracy of the classification changes based on the depth of the decision tree was modelled. An optimal depth was chosen based on where the steep incline in accuracy met the plateau, to avoid overfitting and to simplify computations.\\ 
+In addition to the accuracy score, a graphical representation of how the accuracy of the classification changed based on the depth of the decision tree was modelled. An optimal depth was chosen based on where the steep incline in accuracy met the plateau, to avoid overfitting and to simplify computations.\\ 
 
-Feature importance was also calculated to see if all of the features selected were relevant in the modelling of the algorithm.\\
+Feature importance was also calculated to see if all of the features selected were relevant in the modelling of the algorithm and evaluate discarding the one below a specific percentage.\\
 
 In view of the decision tree's good performance, another algorithm of the same family, the random forest classifier, was deployed to evaluate the difference in accuracy.\\
 
-Lastly, AutoML was used to evaluate the best models and hyperparameters for the Secondary mushroom dataset.\\
+Lastly, AutoML was used to evaluate the best models and hyperparameters for the Secondary mushroom dataset and make comparisons with the algorithms already used.\\
 
 \section{Results}
 
-The results of the assignment review different types of tree algorithms used, their accuracy and an AutoML analysis to verify the existence of better algorithms.\\
+The results of the assignment review different types of tree algorithms used, their accuracy and an AutoML analysis to verify the existence of possible better algorithms solutions.\\
 
-A shallow decision tree with a maximum depth of 2 was used to see the baseline accuracy of a simple model, which was 0.63. Then decision trees were trained with increasing depth and the results were displayed in a graph.\\ 
+A shallow decision tree with a maximum depth of 2 was used as the baseline accuracy of a simple model, which was 0.63. Then decision trees were trained with increasing depth and the results were displayed in a graph.\\ 
 
 The graph showed a significant decrease in accuracy gain after the depth of 13, and a plateau after 16. A decision tree with the depth of 13 showed an accuracy of 0.92.\\
 
