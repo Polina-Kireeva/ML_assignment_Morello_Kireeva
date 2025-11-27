@@ -144,7 +144,7 @@ The dataset (Secondary Mushroom dataset) had a problem regarding data visualizat
 
 The dataset was analyzed as a dataframe to have a general overview of the data. It originally contained 21 features and 61069 observations with two data types: “object" and “float64".\\ 
 
-The data profiling step helped provide the data in an easily readable form, identify the presence of null values for each feature and their predominance over the total entries.\\
+The data profiling step helped provide an overview of the data in an easily readable form, identify the presence of null values for each feature and their predominance over the total entries.\\
 
 Then the decision was made to drop all the features with a high percentage of null values, so “stem-root", “veil-type", “veil-color", “spore-print-color" and “stem-surface" were dropped.\\
 
@@ -174,7 +174,7 @@ After the splitting was completed, tree classification algorithms were implement
 
 In addition to the accuracy score, a graphical representation of how the accuracy of the classification changed based on the depth of the decision tree was modelled. An optimal depth was chosen based on where the steep incline in accuracy met the plateau, to avoid overfitting and to simplify computations.\\ 
 
-Feature importance was also calculated to see if all of the features selected were relevant in the modelling of the algorithm and evaluate discarding the one below a specific percentage.\\
+Feature importance was also calculated to see if all of the features selected were relevant in the modelling of the algorithm and evaluate discarding the ones below a specific percentage.\\
 
 In view of the decision tree's good performance, another algorithm of the same family, the random forest classifier, was deployed to evaluate the difference in accuracy.\\
 
